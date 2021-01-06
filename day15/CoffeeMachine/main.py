@@ -1,7 +1,6 @@
-# This is a sample Python script.
+"""Coffee machine example"""
+"""Basic design is to have all values in a dictionary form and use them as needed """
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 
 import menu as m
 
@@ -30,6 +29,9 @@ class CoffeeMachine:
             print(f'{r}: {self.resources[r]}')
         print(f'Money: {self.Money}')
 
+    # have to first check if there are enough resources in the machine to be sure
+    # that the transaction can even take place
+
     def enough_resources(self, drink):
 
         for r in m.MENU[drink]['ingredients']:
@@ -40,6 +42,8 @@ class CoffeeMachine:
 
         return True
 
+    # after the main transaction happens we need to remove the resource required from the drink
+
     def remove_resources(self, drink):
         for r in m.MENU[drink]['ingredients']:
             self.resources[r] -= m.MENU[drink]['ingredients'][r]
@@ -48,6 +52,7 @@ class CoffeeMachine:
     def make_drink(drink_name):
         print(f'Making {drink_name}')
 
+    # method to handle payment and refund where and if necessary
     def take_payment(self, drink):
         print('Please insert coins.')
         transaction_value = 0
@@ -74,10 +79,13 @@ class CoffeeMachine:
             self.take_payment(drink)
             self.remove_resources(drink)
 
-
+# initiate the coffee machine
 coffee_machine = CoffeeMachine()
 
+# run
 while True:
+    # concat the drinks so if more drinks are added we can simple show them
+    # and will be catered for in design
     drinks_available = str(m.MENU.keys()).replace('dict_keys', '').replace('([', '').replace('])', '')
     user_command = str(input(f'what would you like?({drinks_available}): '))
 
@@ -89,5 +97,5 @@ while True:
         else:
             coffee_machine.off()
     else:
-        print(f'No drink available of {user_command}')
+        print(f'No drink or command available of {user_command}')
 

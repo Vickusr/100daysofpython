@@ -1,8 +1,6 @@
+import menu as m
 """Coffee machine example"""
 """Basic design is to have all values in a dictionary form and use them as needed """
-
-
-import menu as m
 
 
 def multiply(coin_value, number_if_coins):
@@ -69,15 +67,18 @@ class CoffeeMachine:
             if change_to_refund > 0:
                 print(f'Here is ${change_to_refund} in change.')
             self.make_drink(drink)
+            return True
 
         else:
             print('Sorry that is not enough. Money Refunded')
+            return False
 
     def perform_transaction_for_drink(self, drink):
 
         if self.enough_resources(drink):
-            self.take_payment(drink)
-            self.remove_resources(drink)
+            if self.take_payment(drink):
+                self.remove_resources(drink)
+
 
 # initiate the coffee machine
 coffee_machine = CoffeeMachine()
@@ -98,4 +99,3 @@ while coffee_machine.status == 'On':
             coffee_machine.off()
     else:
         print(f'No drink or command available of {user_command}')
-

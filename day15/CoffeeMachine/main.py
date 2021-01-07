@@ -87,7 +87,7 @@ while coffee_machine.status == 'On':
     # concat the drinks so if more drinks are added we can simple show them
     # and will be catered for in design
     drinks_available = str(m.MENU.keys()).replace('dict_keys', '').replace('([', '').replace('])', '')
-    user_command = str(input(f'what would you like?({drinks_available}): '))
+    user_command = str(input(f'what would you like?({drinks_available}): ')).lower()
 
     if user_command in m.MENU.keys():
         coffee_machine.perform_transaction_for_drink(user_command)

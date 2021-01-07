@@ -83,7 +83,7 @@ class CoffeeMachine:
 coffee_machine = CoffeeMachine()
 
 # run
-while True:
+while coffee_machine.status == 'On':
     # concat the drinks so if more drinks are added we can simple show them
     # and will be catered for in design
     drinks_available = str(m.MENU.keys()).replace('dict_keys', '').replace('([', '').replace('])', '')

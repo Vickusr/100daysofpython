@@ -1,7 +1,7 @@
 import menu as m
 """Coffee machine example"""
 """Basic design is to have all values in a dictionary form and use them as needed """
-
+"""This is the main program"""
 
 def multiply(coin_value, number_if_coins):
     return coin_value * number_if_coins
